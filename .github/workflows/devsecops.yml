@@ -11,9 +11,25 @@ jobs:
         runs-on: ubuntu-latest
 
         steps: 
+            
             - uses: actions/checkout@v4
+              with: 
+                fetch-depth: 0
 
-            - name: Gitleaks
+            - name: Gitleaks Secret Scanning
+              uses: gitleaks/gitleaks-action@v2
+              
+
+            - name: Vulnerability Scanner
+              uses: aquasecurity/trivy-action@v0.20.0
+              with:
+                scan-type: 'fs'
+                scan-ref: '.'
+                format: 'sarif' #Static Analytic Results Interchange Format
+                output: 'trivy-results.sarif'
+
+
+
             
 
 
