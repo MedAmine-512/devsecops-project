@@ -21,13 +21,15 @@ jobs:
               
 
             - name: Vulnerability Scanner
-              uses: aquasecurity/trivy-action@v0.20.0
+              uses: aquasecurity/trivy-action@v0.51
               with:
                 scan-type: 'fs'
                 scan-ref: '.'
                 format: 'sarif' #Static Analytic Results Interchange Format
                 output: 'trivy-results.sarif'
 
+            - name: ZAP Scan
+              uses: zaproxy/action-baseline@v0.12.0
 
 
             
